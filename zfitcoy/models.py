@@ -4,33 +4,47 @@ from django.db.models.fields import IntegerField
 from djrichtextfield.models import RichTextField
 
 
-class Blog_category(models.Model):
-    name = models.CharField(max_length=100)
-    def __str__(self):
-        return self.name
-
-
-class Blogs(models.Model):
-    categorys = models.ForeignKey(Blog_category, on_delete=models.CASCADE, null=True)
+class Shop(models.Model):
     name =  models.CharField(max_length=50)
-    detail = RichTextField(null=True)
+    detail = models.TextField(null=True,max_length=300)
     image = models.FileField(null=True)
-    date = models.DateField(auto_now=True)
+    Orginal_price = models.TextField(null=True)
+    Discount_price = models.TextField(null=True)
+    Discountpercent = models.TextField(null=True)
     def __str__(self):
         return self.name
+
+class Contact(models.Model):
+    name =  models.CharField(null=True,max_length=50)
+    email = models.EmailField(null=True)
+    message =  models.TextField(null=True)
+    def __str__(self):
+        return self.name
+
 
 class Team(models.Model):
     name =  models.CharField(null=True,max_length=50)
     post =  models.CharField(null=True,max_length=50)
-    detail = RichTextField(null=True)
+    detail = models.CharField(null=True,max_length=300)
     image = models.FileField(null=True)
-    date = models.DateField(auto_now=True)
-    facebook =  models.URLField(null=True)
-    twitter =  models.URLField(null=True)
-    instagram =  models.URLField(null=True)
-    linkedin =  models.URLField(null=True)
     def __str__(self):
         return self.name
+
+class Appointment(models.Model):
+    name =  models.CharField(max_length=50)
+    email = models.EmailField(null=True)
+    mobile = IntegerField(null=True)
+    gender =  models.CharField(max_length=50)
+    Time_of_day =  models.CharField(max_length=50)
+    Way_to_reach =  models.CharField(max_length=50)
+    date =  models.DateField(max_length=50)
+    time =  models.TimeField(max_length=50)
+    Address = models.CharField(max_length=200,null=True)
+    Reason_for_appointment = models.CharField(max_length=200,null=True)
+    date = models.DateField(auto_now=True)
+    def __str__(self):
+        return self.name
+
 
 class Services(models.Model):
     name =  models.CharField(null=True,max_length=50)
@@ -51,17 +65,15 @@ class Appionment(models.Model):
     def __str__(self):
         return self.name
 
-
-
-class Contact(models.Model):
-    name =  models.CharField(null=True,max_length=50)
+class Newsletter(models.Model):
     email = models.EmailField(null=True)
-    mobile = models.IntegerField(null=True)
-    query =  models.CharField(null=True,max_length=50)
-    message =  models.TextField(null=True)
     def __str__(self):
-        return self.name
+        return self.email
 
+
+
+class Demo_Images(models.Model):
+    image = models.FileField(null=True)
 
 
 class SERVICE_CONTACT(models.Model):
