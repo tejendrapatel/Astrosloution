@@ -17,4 +17,5 @@ urlpatterns = [
     path('contact',CONTACT,name= 'contact'),
     ################dynamic pages ############
     path('Service/<int:blo_id>/',SERVICES_SINGLE, name='services_single'),
+    path('rashi/<int:blon_id>/',RASHI_SINGLE, name='Rashi_single'),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

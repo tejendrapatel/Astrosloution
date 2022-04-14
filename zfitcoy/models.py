@@ -58,12 +58,24 @@ class Services(models.Model):
 
 class Appionment(models.Model):
     name =  models.CharField(null=True,max_length=50)
-    date = models.DateField(auto_now=True)
+    image = models.FileField(null=True)
     mobile = IntegerField(null=True)
     time = models.CharField(null=True,max_length=500)
     message =  models.TextField(null=True)
     def __str__(self):
         return self.name
+
+class Rashi(models.Model):
+    name =  models.CharField(null=True,max_length=50)
+    image = models.FileField(null=True)
+    detail = RichTextField(null=True)
+    def __str__(self):
+        return self.name
+
+class About(models.Model):
+    image = models.FileField(null=True)
+    description =  models.TextField(null=True)
+
 
 class Newsletter(models.Model):
     email = models.EmailField(null=True)

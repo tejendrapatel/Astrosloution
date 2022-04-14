@@ -15,12 +15,13 @@ def HOME(request):
     new = Shop.objects.all().order_by('-id')
     ser = sers[:5]
     test = Team.objects.all()
+    ab = About.objects.all()
     serm = Services.objects.all()
     if request.method == "POST":
         d = request.POST
         namee = d['em']
         Newsletter.objects.create(email=namee)
-    d = {"ser":ser,"serm":serm,"test":test,"new":new}
+    d = {"ser":ser,"serm":serm,"test":test,"new":new,"ab":ab}
     return render(request, 'index.html',d)
 
 def ABOUT(request):
@@ -29,9 +30,10 @@ def ABOUT(request):
         namee = d['em']
         Newsletter.objects.create(email=namee)
     test = Team.objects.all()
+    ab = About.objects.all()
     sers = Services.objects.all()
     ser = sers[:5]
-    d = {"test":test,"ser":ser}
+    d = {"test":test,"ser":ser,"ab":ab}
     return render(request, 'about.html',d)
 
 def SERVICES(request):
@@ -142,3 +144,8 @@ def SERVICES_SINGLE(request,blo_id):
     ser = sers[:5]
     d = {"sersingle":sersingle,"ser":ser}
     return render(request, 'services_single.html',d)
+
+def RASHI_SINGLE(request,blon_id):
+    sersingle = Rashi.objects.get(id=blon_id)
+    d = {"sersingle":sersingle}
+    return render(request, 'Rashisingle.html',d)
